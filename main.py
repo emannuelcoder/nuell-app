@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import json
+from pathlib import Path
 import os
 
 class Nuell(commands.Bot):
@@ -22,7 +23,8 @@ class Nuell(commands.Bot):
 intents = discord.Intents.all()
 bot = Nuell("a.", intents=intents)
 
-with open("secret.json", "r", encoding="utf-8") as f:
+secret_json = Path(__file__).parent / "secret.json"
+with open(secret_json, "r", encoding="utf-8") as f:
     data = json.load(f)
 token = data["token"]
 
