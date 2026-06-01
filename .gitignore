@@ -2,6 +2,7 @@
 venv/
 
 .env
+configs.json
 
 __pycache__/
 *.pyc
