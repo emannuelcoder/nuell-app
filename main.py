@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 class Nuell(commands.Bot):
     async def setup_hook(self):
@@ -23,9 +24,7 @@ class Nuell(commands.Bot):
 intents = discord.Intents.all()
 bot = Nuell("a.", intents=intents)
 
-secret_json = Path(__file__).parent / "secret.json"
-with open(secret_json, "r", encoding="utf-8") as f:
-    data = json.load(f)
-token = data["token"]
+load_dotenv()
+TOKEN = os.getenv("TOKEN")
 
-bot.run(token)
+bot.run(TOKEN)

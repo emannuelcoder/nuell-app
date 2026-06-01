@@ -5,7 +5,7 @@ import json
 import textwrap
 import traceback
 
-with open("secret.json", "r", encoding="utf-8") as f:
+with open("configs.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 owner_id = data["owner_id"]
