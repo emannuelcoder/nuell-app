@@ -1,11 +1,12 @@
-import discord
+from dotenv import load_dotenv
+from pathlib import Path
+from sqlalchemy.engine.url import make_url
+import os
 
-print(discord.__version__)
+env_path = Path(".env")
+load_dotenv(env_path)
 
-print(hasattr(discord.ui, "Container"))
-print(hasattr(discord.ui, "TextDisplay"))
-print(hasattr(discord.ui, "Section"))
-print(hasattr(discord.ui, "Thumbnail"))
-print(hasattr(discord.ui, "MediaGallery"))
-print(hasattr(discord.ui, "ActionRow"))
-print(hasattr(discord.ui, "StringSelect"))
+DB_URL = os.getenv("DB_URL", "").strip()
+
+print("DB_URL:", DB_URL)
+print("Driver:", make_url(DB_URL).get_driver_name())
