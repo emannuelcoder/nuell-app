@@ -1,0 +1,7 @@
+from sqlalchemy.orm import DeclarativeBase
+
+class Base(DeclarativeBase):
+    pass
+
+from .user import User
+from .guild import Guild

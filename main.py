@@ -1,7 +1,5 @@
 import discord
 from discord.ext import commands
-import json
-from pathlib import Path
 import os
 from dotenv import load_dotenv
 

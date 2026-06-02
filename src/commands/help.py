@@ -1,10 +1,8 @@
 import json
-
 import discord
 from discord import app_commands
 from discord.ext import commands
-
-from src.loaders.emojis import emoji
+from src.utils.emojis import emoji
 
 with open("configs.json", "r", encoding="utf-8") as f:
     data = json.load(f)

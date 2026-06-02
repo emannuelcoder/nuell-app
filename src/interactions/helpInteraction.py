@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from src.loaders.emojis import emoji
+from src.utils.emojis import emoji
 
 class Container(discord.ui.LayoutView):
     def __init__(self, interaction: discord.Interaction):

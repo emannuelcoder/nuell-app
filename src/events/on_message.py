@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from src.loaders.emojis import emoji
+from src.utils.emojis import emoji
 
 class OnMessage(commands.Cog):
     def __init__(self, bot):
@@ -55,11 +55,7 @@ class OnMessage(commands.Cog):
             help_id = help_command.id if help_command else 0
 
             await message.reply(
-                view=self.MentionMessage(
-                    message,
-                    self.bot,
-                    help_id
-                )
+                view=self.MentionMessage(message, self.bot, help_id)
             )
 
 async def setup(bot):
