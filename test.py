@@ -1,12 +1,11 @@
-from dotenv import load_dotenv
-from pathlib import Path
-from sqlalchemy.engine.url import make_url
-import os
+import asyncio
+from src.database.repositories.user_repository import get
 
-env_path = Path(".env")
-load_dotenv(env_path)
+async def test():
+    cooldown = await get(
+        949047304910942248,
+        "daily_cd"
+    )
+    print(repr(cooldown))
 
-DB_URL = os.getenv("DB_URL", "").strip()
-
-print("DB_URL:", DB_URL)
-print("Driver:", make_url(DB_URL).get_driver_name())
+asyncio.run(test())

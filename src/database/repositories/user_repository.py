@@ -203,3 +203,39 @@ async def sub(
         )
 
         await session.commit()
+
+async def setV( 
+    user_id: int,
+    field: str,
+    value: any
+):
+
+    if field not in VALID_FIELDS:
+        raise ValueError(
+            f"Campo inválido: {field}"
+        )
+
+    async with SessionLocal() as session:
+
+        result = await session.execute(
+            select(User).where(
+                User.user_id == user_id
+            )
+        )
+
+        user = result.scalar_one_or_none()
+
+        if not user:
+            user = User(
+                user_id=user_id
+            )
+
+            session.add(user)
+
+        setattr(
+            user,
+            field,
+            value
+        )
+
+        await session.commit()

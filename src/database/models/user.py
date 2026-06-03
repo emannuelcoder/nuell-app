@@ -15,8 +15,8 @@ class User(Base):
 
     money: Mapped[int] = mapped_column(default=0)
 
-    daily_cd: Mapped[datetime | None] = mapped_column(nullable=True)
-    work_cd: Mapped[datetime | None] = mapped_column(nullable=True)
+    daily_cd: Mapped[int] = mapped_column(BigInteger, default=0)
+    work_cd: Mapped[int] = mapped_column(BigInteger, default=0)
 
     profile: Mapped[dict] = mapped_column(
         JSON,

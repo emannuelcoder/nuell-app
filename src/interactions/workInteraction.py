@@ -12,16 +12,16 @@ class InteractionMessage(discord.ui.LayoutView):
 
         self.add_item(
             discord.ui.TextDisplay(
-                f"## {emoji('gift')} Recompensa Diária\n"
-                f"> {emoji('check')} {interaction.user.mention}, você resgatou sua **recompensa diária** com sucesso e ganhou **[ `{amount}` | `{abv(amount)}` ] {emoji('ducos')} Ducos**.\n"
-                f"> {emoji('premium')} Sabia que se você fosse **premium** você teria ganhado **5000 Ducos** a mais, totalizando **[ `{amount + 5000}` ] {emoji('ducos')} Ducos**, que pena, não é mesmo? Use **/premium** para comprar premium.\n"
+                f"## {emoji('work')} Trabalho\n"
+                f"> {emoji('check')} {interaction.user.mention}, você trabalhou com sucesso e ganhou **[ `{amount}` | `{abv(amount)}` ] {emoji('ducos')} Ducos**.\n"
+                f"> {emoji('premium')} Sabia que se você fosse **premium** você teria ganhado **3000 Ducos** a mais, totalizando **[ `{amount + 3000}` ] {emoji('ducos')} Ducos**, que pena, não é mesmo? Use **/premium** para comprar premium.\n"
                 f"Agora você possui **[ `{total}` | `{abv(total)}` ] {emoji('ducos')} Ducos**."
             )
         )
 
         row = discord.ui.ActionRow(
             discord.ui.Button(
-                label="Resgatado!",
+                label="Você trabalhou!",
                 style=discord.ButtonStyle.secondary,
                 disabled=True,
                 emoji=emoji('check')
@@ -29,7 +29,7 @@ class InteractionMessage(discord.ui.LayoutView):
         )
         self.add_item(row)
 
-class DailyInteraction(commands.Cog):
+class WorkInteraction(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
@@ -46,7 +46,7 @@ class DailyInteraction(commands.Cog):
             return
 
         data = custom_id.split("_")
-        if data[0] != "daily":
+        if data[0] != "work":
             return
         
         if interaction.user.id != int(data[1]):
@@ -55,29 +55,21 @@ class DailyInteraction(commands.Cog):
                 ephemeral=True
             )
 
-        amount = random.randint(2000, 8000)
+        amount = random.randint(800, 2500)
         await add(interaction.user.id, 'money', amount)
         total = await get(interaction.user.id, 'money')
 
         now_dt = datetime.now()
+        now = int(now_dt.timestamp())
 
-        midNight = now_dt.replace(
-            hour=0,
-            minute=1,
-            second=0,
-            microsecond=0
-        )
+        min30 = now_dt + timedelta(minutes=30)
+        min30 = int(min30.timestamp())
 
-        if now_dt >= midNight:
-            midNight += timedelta(days=1)
-
-        midNight = int(midNight.timestamp())
-
-        await setV(interaction.user.id, 'daily_cd', midNight)
+        await setV(interaction.user.id, 'work_cd', min30)
 
         await interaction.response.edit_message(
             view=InteractionMessage(interaction, amount, total)
         )
 
 async def setup(bot):
-    await bot.add_cog(DailyInteraction(bot))
+    await bot.add_cog(WorkInteraction(bot))
