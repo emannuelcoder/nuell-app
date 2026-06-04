@@ -31,11 +31,11 @@ class Message(discord.ui.LayoutView):
             )
 
 
-class Balance(commands.GroupCog, name="saldo"):
+class Balance(commands.GroupCog, name="ducos"):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(name="ducos", description="Veja o saldo de Ducos, seu ou de outro usuário.")
+    @app_commands.command(name="atm", description="Veja o seu saldo de Ducos ou de outro usuário.")
     async def saldo(
         self,
         interaction: discord.Interaction,

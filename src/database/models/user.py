@@ -1,10 +1,7 @@
-from datetime import datetime
-
 from sqlalchemy import JSON, BigInteger
 from sqlalchemy.orm import Mapped, mapped_column
 
 from . import Base
-
 
 class User(Base):
     __tablename__ = "users"
@@ -17,6 +14,8 @@ class User(Base):
 
     daily_cd: Mapped[int] = mapped_column(BigInteger, default=0)
     work_cd: Mapped[int] = mapped_column(BigInteger, default=0)
+
+    in_pay: Mapped[bool] = mapped_column(default=False)
 
     profile: Mapped[dict] = mapped_column(
         JSON,

@@ -68,7 +68,7 @@ class Daily(commands.Cog):
         self.bot = bot
 
     @app_commands.command(
-        name="daily",
+        name="diário",
         description="Resgate sua recompensa diária"
     )
 

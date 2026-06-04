@@ -8,7 +8,8 @@ VALID_FIELDS = {
     "money",
     "daily_cd",
     "work_cd",
-    "premium"
+    "premium",
+    "in_pay",
 }
 
 NUMERIC_FIELDS = {
