@@ -49,8 +49,7 @@ class DailyMessage(discord.ui.LayoutView):
                     f"## {emoji('gift')} Recompensa Diária\n"
                     f"> {emoji('pikachu_hello')} Olá, {interaction.user.mention}! Aqui você pode resgatar sua recompensa diária, apenas clicando no botão **[ `\"Resgatar\"` ]**.\n"
                     f"Resgatando sua recompensa, você pode ganhar entre **[ `2000` ]** e **[ `8000` ] {emoji('ducos')} Ducos**.\n"
-                    f"> {emoji('premium')} Sabia que usuários **premiums** tem mais vantagens? Premium passar a receber um bônus de **[ `5000` ] Ducos**.\n"
-                    f"-# {emoji('time')} Lembre-se: você poderá resgatar sua recompensa novamente às **[ <t:{midNight}:t> | <t:{midNight}:R> ]**."
+                    f"-# ⤷ {emoji('time')} Lembre-se: você poderá resgatar sua recompensa novamente às **[ <t:{midNight}:t> | <t:{midNight}:R> ]**."
                 )
             )
             row = discord.ui.ActionRow(

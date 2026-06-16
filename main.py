@@ -2,9 +2,12 @@ import discord
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
+from datetime import datetime
 
 class Nuell(commands.Bot):
     async def setup_hook(self):
+        self.start_time = datetime.now()
+
         print("🔄 Iniciando aplicação...")
 
         folders = ["events", "commands", "interactions"]

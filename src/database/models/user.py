@@ -16,6 +16,7 @@ class User(Base):
     work_cd: Mapped[int] = mapped_column(BigInteger, default=0)
 
     in_pay: Mapped[bool] = mapped_column(default=False)
+    in_bet: Mapped[bool] = mapped_column(default=False)
 
     profile: Mapped[dict] = mapped_column(
         JSON,

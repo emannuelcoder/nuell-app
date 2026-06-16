@@ -13,7 +13,7 @@ class Message(discord.ui.LayoutView):
 
         self.add_item(
             discord.ui.TextDisplay(
-                f"## Saldo de {user.mention}\n"
+                f"## {emoji('sacola')} Saldo de {user.mention}\n"
             )
         )
 
@@ -31,17 +31,25 @@ class Message(discord.ui.LayoutView):
             )
 
 
-class Balance(commands.GroupCog, name="ducos"):
+class Balance(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    @app_commands.command(name="atm", description="Veja o seu saldo de Ducos ou de outro usuário.")
+    @app_commands.command(
+        name="saldo",
+        description="Veja o seu saldo de Ducos ou de outro usuário."
+    )
+
+    @app_commands.describe(
+        usuário="Veja o saldo de outro usuário."
+    )
+
     async def saldo(
         self,
         interaction: discord.Interaction,
-        user: discord.User | None = None
+        usuário: discord.User | None = None
     ):
-        target_user = user or interaction.user
+        target_user = usuário or interaction.user
 
         db_user = await get_or_create_user(target_user.id)
 

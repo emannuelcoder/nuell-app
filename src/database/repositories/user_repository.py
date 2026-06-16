@@ -10,6 +10,7 @@ VALID_FIELDS = {
     "work_cd",
     "premium",
     "in_pay",
+    "in_bet",
 }
 
 NUMERIC_FIELDS = {
@@ -172,35 +173,6 @@ async def sub(
             user,
             field,
             current_value - amount
-        )
-
-        await session.commit()
-    if field not in VALID_FIELDS:
-        raise ValueError(
-            f"Campo inválido: {field}"
-        )
-
-    async with SessionLocal() as session:
-
-        result = await session.execute(
-            select(User).where(
-                User.user_id == user_id
-            )
-        )
-
-        user = result.scalar_one_or_none()
-
-        if not user:
-            user = User(
-                user_id=user_id
-            )
-
-            session.add(user)
-
-        setattr(
-            user,
-            field,
-            getattr(user, field) - amount
         )
 
         await session.commit()

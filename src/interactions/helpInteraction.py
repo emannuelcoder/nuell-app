@@ -20,12 +20,12 @@ class Container(discord.ui.LayoutView):
             container.add_item(
                 discord.ui.TextDisplay(
                     f"## {emoji('moderacao')} Comandos de Moderação\n"
-                    f"### /ban\n⤷ Bana um usuário do servidor.\n"
-                    f"### /unban\n⤷ Desbana um usuário do servidor.\n"
-                    f"### /mute\n⤷ Silencie um usuário do servidor.\n"
-                    f"### /unmute\n⤷ Dessilencie um usuário do servidor.\n"
-                    f"### /lock\n⤷ Tranque um canal do servidor.\n"
-                    f"### /unlock\n⤷ Destranque um canal do servidor."
+                    f"### </banir:1515858792279965798>\n⤷ Bana um usuário do servidor.\n"
+                    f"### </desbanir:1515864849668640839>\n⤷ Desbana um usuário do servidor.\n"
+                    f"### </mute:1515875247486931067>\n⤷ Silencie um usuário do servidor.\n"
+                    f"### </unmute:1515875247486931068>\n⤷ Dessilencie um usuário do servidor.\n"
+                    f"### </trancar canal:1515878796522426552>\n⤷ Tranque um canal do servidor.\n"
+                    f"### </destrancar canal:1515878796522426553>\n⤷ Destranque um canal do servidor."
                 )
             )
 
@@ -33,10 +33,11 @@ class Container(discord.ui.LayoutView):
             container.add_item(
                 discord.ui.TextDisplay(
                     f"## {emoji('money')} Comandos de Economia\n"
-                    f"### /daily\n⤷ Resgate sua recompensa diária.\n"
-                    f"### /pay\n⤷ Pague um usuário.\n"
-                    f"### /work\n⤷ Trabalhe para ganhar dinheiro.\n"
-                    f"### /bet\n⤷ Aposte dinheiro."
+                    f"### </diário:1513679777410846855>\n⤷ Resgate sua recompensa diária de **Ducos**.\n"
+                    f"### </saldo:1513679777410846854>\n⤷ Consulte o saldo de **Ducos** de alguém.\n"
+                    f"### </transferir:1513679777410846858>\n⤷ Transfira **Ducos** a um usuário.\n"
+                    f"### </trabalhar:1513679777410846860>\n⤷ Trabalhe para ganhar **Ducos**.\n"
+                    f"### </slots:1514638107218153653>\n⤷ Aposte **Ducos** na máquina de caça-níqueis."
                 )
             )
 
@@ -44,9 +45,8 @@ class Container(discord.ui.LayoutView):
             container.add_item(
                 discord.ui.TextDisplay(
                     f"## {emoji('confetes')} Comandos para Diversão\n"
-                    f"### /8ball\n⤷ Receba uma resposta aleatória.\n"
-                    f"### /meme\n⤷ Envia um meme aleatório.\n"
-                    f"### /joke\n⤷ Envia uma piada aleatória.\n"
+                    f"### </8ball:1516566662432686202>\n⤷ Receba uma resposta aleatória.\n"
+                    f"### </piadas:1516572751224115292>\n⤷ Receba uma piada aleatória.\n"
                     f"### /kiss\n⤷ Beije um usuário.\n"
                     f"### /hug\n⤷ Abrace um usuário.\n"
                     f"### /gay\n⤷ Veja o quanto gay um usuário é."
@@ -57,12 +57,10 @@ class Container(discord.ui.LayoutView):
             container.add_item(
                 discord.ui.TextDisplay(
                     f"## {emoji('info')} Comandos Utilitários\n"
-                    f"### /user info\n⤷ Veja as informações de um usuário.\n"
-                    f"### /server info\n⤷ Veja as informações do servidor.\n"
-                    f"### /bot info\n⤷ Veja minhas informações.\n"
-                    f"### /isbot\n⤷ Veja se um usuário é um bot.\n"
-                    f"### /say\n⤷ Envie uma mensagem pelo bot.\n"
-                    f"### /premium\n⤷ Veja seu status premium."
+                    f"### </usuário info:1514620101444374700>\n⤷ Veja as informações de um usuário.\n"
+                    f"### </servidor info:1515003250737414327>\n⤷ Veja as informações do servidor.\n"
+                    f"### </nuell info:1513723574345662464>\n⤷ Veja minhas informações.\n"
+                    f"### </falar:1513696698277302333>\n⤷ Envie uma mensagem através bot."
                 )
             )
 
@@ -70,13 +68,11 @@ class Container(discord.ui.LayoutView):
             container.add_item(
                 discord.ui.TextDisplay(
                     f"## {emoji('gpt')} Comandos de Inteligência Artificial\n"
-                    f"### /chat\n⤷ Converse com uma IA.\n"
-                    f"### /image gen\n⤷ Gere imagens usando IA."
+                    f"### </chat:1516449051812434061>\n⤷ Converse com a **IA do Nuell*.\n"
                 )
             )
 
         self.add_item(container)
-
 
 class HelpInteraction(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -98,7 +94,6 @@ class HelpInteraction(commands.Cog):
             view=Container(interaction),
             ephemeral=True
         )
-
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(HelpInteraction(bot))

@@ -40,8 +40,7 @@ class WorkMessage(discord.ui.LayoutView):
                     f"## {emoji('work')} Trabalho\n"
                     f"> {emoji('pikachu_hello')} Olá, {interaction.user.mention}! Aqui você pode trabalhar, apenas clicando no botão **[ `\"Trabalhar\"` ]**.\n"
                     f"Trabalhando, você pode ganhar entre **[ `800` ]** e **[ `2500` ] {emoji('ducos')} Ducos**.\n"
-                    f"> {emoji('premium')} Sabia que usuários **premiums** tem mais vantagens? Premium passar a receber um bônus de **[ `3000` ] Ducos**.\n"
-                    f"-# {emoji('time')} Lembre-se: você poderá trabalhar novamente às **[ <t:{min30}:t> | <t:{min30}:R> ]**."
+                    f"-# ⤷ {emoji('time')} Lembre-se: você poderá trabalhar novamente às **[ <t:{min30}:t> | <t:{min30}:R> ]**."
                 )
             )
             row = discord.ui.ActionRow(
@@ -60,7 +59,7 @@ class Work(commands.Cog):
 
     @app_commands.command(
         name="trabalhar",
-        description="Trabalhe e ganhe Ducos"
+        description="Trabalhe e ganhe ducos"
     )
 
     async def work(self, interaction: discord.Interaction):

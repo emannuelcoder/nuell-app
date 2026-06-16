@@ -1,0 +1,9 @@
+MODEL = "llama-3.3-70b-versatile"
+
+MAX_OUTPUT_TOKENS = 350
+
+TEMPERATURE = 0.7
+
+MAX_HISTORY = 8
+
+MAX_INPUT_CHARS = 1200

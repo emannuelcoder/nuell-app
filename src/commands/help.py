@@ -58,7 +58,7 @@ class AjudaView(discord.ui.LayoutView):
     def __init__(self, bot: commands.Bot, owner: discord.User, user: discord.User):
         super().__init__(timeout=None)
 
-        comandos = len(list(bot.tree.walk_commands()))
+        comandos = len(bot.tree.get_commands())
 
         container = discord.ui.Container(
             accent_color=discord.Color.blue()
@@ -80,7 +80,7 @@ class AjudaView(discord.ui.LayoutView):
 
         container.add_item(
             discord.ui.TextDisplay(
-                f"> {emoji('duvida')} Sabia que eu tenho um **[Site Oficial](https://nuell.netlify.app/)**? Além disso, eu também tenho minha própria **[Comunidade no Discord](https://discord.gg/nuell)**, onde você pode obter suporte, sugerir novos recursos e se conectar com outros usuários.\n"
+                f"> {emoji('duvida')} Sabia que eu tenho meu próprio **[Site](https://nuell.netlify.app/)**? Além disso, eu também tenho uma **[Comunidade](https://discord.gg/nuell)**, onde você pode obter suporte, sugerir novos recursos e se conectar com outros usuários.\n"
                 f"-# ⤷ Fique á vontade para me adicionar, entrar em minha comunidade ou visitar meu site. Use os botões para acessar meus links. {emoji('feliz_dance')}"
             )
         )
@@ -88,17 +88,17 @@ class AjudaView(discord.ui.LayoutView):
         container.add_item(
             discord.ui.ActionRow(
                 discord.ui.Button(
-                    label="Meu Site",
+                    label="Meu site",
                     url="https://nuell.netlify.app/",
                     emoji=emoji("website")
                 ),
                 discord.ui.Button(
-                    label="Minha Comunidade",
+                    label="Minha comunidade",
                     url="https://discord.gg/nuell",
                     emoji=emoji("discord")
                 ),
                 discord.ui.Button(
-                    label="Me Adicione",
+                    label="Me adicione",
                     url="https://discord.com/api/oauth2/authorize?client_id=1087444075427456000&permissions=8&scope=bot%20applications.commands",
                     emoji=emoji("add")
                 )
@@ -109,7 +109,7 @@ class AjudaView(discord.ui.LayoutView):
 
 
 class Ajuda(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @app_commands.command(

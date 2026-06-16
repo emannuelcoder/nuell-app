@@ -14,8 +14,7 @@ class InteractionMessage(discord.ui.LayoutView):
             discord.ui.TextDisplay(
                 f"## {emoji('gift')} Recompensa Diária\n"
                 f"> {emoji('check')} {interaction.user.mention}, você resgatou sua **recompensa diária** com sucesso e ganhou **[ `{amount}` | `{abv(amount)}` ] {emoji('ducos')} Ducos**.\n"
-                f"> {emoji('premium')} Sabia que se você fosse **premium** você teria ganhado **5000 Ducos** a mais, totalizando **[ `{amount + 5000}` ] {emoji('ducos')} Ducos**, que pena, não é mesmo? Use **/premium** para comprar premium.\n"
-                f"Agora você possui **[ `{total}` | `{abv(total)}` ] {emoji('ducos')} Ducos**."
+                f"-# ⤷ Você pode usar </saldo:1513679777410846854> para consultar seu novo saldo de ducos."
             )
         )
 
