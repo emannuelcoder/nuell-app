@@ -22,12 +22,12 @@ class OnMessage(commands.Cog):
             row = discord.ui.ActionRow(
                 discord.ui.Button(
                     label="Site",
-                    url="https://nuell.netlify.app/",
+                    url="https://nuell-app.netlify.app/",
                     emoji=emoji("website")
                 ),
                 discord.ui.Button(
                     label="Comunidade",
-                    url="https://discord.gg/nuell",
+                    url="https://discord.gg/CUv9QAxJPa",
                     emoji=emoji("discord")
                 ),
                 discord.ui.Button(
