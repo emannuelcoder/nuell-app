@@ -51,8 +51,8 @@ class BotMessage(discord.ui.LayoutView):
 
         container.add_item(
             discord.ui.TextDisplay(
-                f"> {emoji('duvida')} Sabia que eu tenho meu próprio **[Site](<https://nuell.netlify.app/>)**? Acesse-o usando os botões.\n"
-                f"-# ⤷ {emoji('feliz_dance')} Gostou de mim? **[Me adicione](<https://discord.com/api/oauth2/authorize?client_id=1087444075427456000&permissions=8&scope=bot%20applications.commands>)** e entre em minha **[Comunidade](<https://discord.gg/nuell>)** para obter **suporte**, **informações**, **fazer sugestões** ou interagir com outros usuários!"
+                f"> {emoji('duvida')} Sabia que eu tenho meu próprio **[Site](<https://nuell-app.netlify.app/>)**? Acesse-o usando os botões.\n"
+                f"-# ⤷ {emoji('feliz_dance')} Gostou de mim? **[Me adicione](<https://discord.com/api/oauth2/authorize?client_id=1087444075427456000&permissions=8&scope=bot%20applications.commands>)** e entre em minha **[Comunidade](<https://discord.gg/cXNrFETDzQ>)** para obter **suporte**, **informações**, **fazer sugestões** ou interagir com outros usuários!"
             )
         )
 
@@ -62,12 +62,12 @@ class BotMessage(discord.ui.LayoutView):
             discord.ui.ActionRow(
                 discord.ui.Button(
                     label="Meu site",
-                    url="https://nuell.netlify.app/",
+                    url="https://nuell-app.netlify.app/",
                     emoji=emoji("website")
                 ),
                 discord.ui.Button(
                     label="Minha comunidade",
-                    url="https://discord.gg/nuell",
+                    url="https://discord.gg/cXNrFETDzQ",
                     emoji=emoji("discord")
                 ),
                 discord.ui.Button(

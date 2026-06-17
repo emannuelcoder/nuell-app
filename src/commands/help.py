@@ -80,7 +80,7 @@ class AjudaView(discord.ui.LayoutView):
 
         container.add_item(
             discord.ui.TextDisplay(
-                f"> {emoji('duvida')} Sabia que eu tenho meu próprio **[Site](https://nuell.netlify.app/)**? Além disso, eu também tenho uma **[Comunidade](https://discord.gg/nuell)**, onde você pode obter suporte, sugerir novos recursos e se conectar com outros usuários.\n"
+                f"> {emoji('duvida')} Sabia que eu tenho meu próprio **[Site](https://nuell-app.netlify.app/)**? Além disso, eu também tenho uma **[Comunidade](https://discord.gg/cXNrFETDzQ)**, onde você pode obter suporte, sugerir novos recursos e se conectar com outros usuários.\n"
                 f"-# ⤷ Fique á vontade para me adicionar, entrar em minha comunidade ou visitar meu site. Use os botões para acessar meus links. {emoji('feliz_dance')}"
             )
         )
@@ -89,12 +89,12 @@ class AjudaView(discord.ui.LayoutView):
             discord.ui.ActionRow(
                 discord.ui.Button(
                     label="Meu site",
-                    url="https://nuell.netlify.app/",
+                    url="https://nuell-app.netlify.app/",
                     emoji=emoji("website")
                 ),
                 discord.ui.Button(
                     label="Minha comunidade",
-                    url="https://discord.gg/nuell",
+                    url="https://discord.gg/cXNrFETDzQ",
                     emoji=emoji("discord")
                 ),
                 discord.ui.Button(

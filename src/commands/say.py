@@ -12,10 +12,10 @@ class SayMessage(discord.ui.LayoutView):
         self.user = user
 
         report = discord.ui.Button(
-            label="Denunciar",
-            custom_id="report",
+            label="Denuncie-o em meu Servidor",
+            url="https://discord.gg/cXNrFETDzQ",
             emoji=emoji('megafone'),
-            style=discord.ButtonStyle.danger
+            style=discord.ButtonStyle.link
         )
 
         self.add_item(
