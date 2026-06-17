@@ -47,9 +47,8 @@ class Container(discord.ui.LayoutView):
                     f"## {emoji('confetes')} Comandos para Diversão\n"
                     f"### </8ball:1516566662432686202>\n⤷ Receba uma resposta aleatória.\n"
                     f"### </piadas:1516572751224115292>\n⤷ Receba uma piada aleatória.\n"
-                    f"### /kiss\n⤷ Beije um usuário.\n"
-                    f"### /hug\n⤷ Abrace um usuário.\n"
-                    f"### /gay\n⤷ Veja o quanto gay um usuário é."
+                    f"### </beijar:1516585155307765892>\n⤷ Beije um usuário.\n"
+                    f"### </abraçar:1516583019056730302>\n⤷ Abrace um usuário."
                 )
             )
 
@@ -68,7 +67,7 @@ class Container(discord.ui.LayoutView):
             container.add_item(
                 discord.ui.TextDisplay(
                     f"## {emoji('gpt')} Comandos de Inteligência Artificial\n"
-                    f"### </chat:1516449051812434061>\n⤷ Converse com a **IA do Nuell*.\n"
+                    f"### </chat:1516449051812434061>\n⤷ Converse com a **IA do Nuell**.\n"
                 )
             )
 

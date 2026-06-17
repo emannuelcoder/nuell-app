@@ -8,6 +8,7 @@ VALID_FIELDS = {
     "money",
     "daily_cd",
     "work_cd",
+    "chat_cd",
     "premium",
     "in_pay",
     "in_bet",

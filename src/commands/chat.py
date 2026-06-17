@@ -1,9 +1,11 @@
 import discord
+from datetime import datetime, timedelta
 from discord.ext import commands
 from discord import app_commands
 from src.utils.emojis import emoji
 from src.utils.ia.service import groq_service
 from src.utils.ia.config import MAX_INPUT_CHARS
+from src.database.repositories.user_repository import get, setV
 
 class Chat(commands.Cog):
     def __init__(self, bot):
@@ -23,6 +25,23 @@ class Chat(commands.Cog):
         interaction: discord.Interaction,
         mensagem: str
     ):
+        now = int(datetime.now().timestamp())
+
+        cooldown = await get(
+            interaction.user.id,
+            "chat_cd"
+        ) or 0
+
+        if cooldown > now:
+            return await interaction.response.send_message(
+                (
+                    f"## {emoji('gpt')} Inteligência Artificial\n"
+                    f"> {emoji('pikachu_hello')} Olá, {interaction.user.mention}! Você já usou este comando recentemente.\n"
+                    f"> {emoji('time')} Você poderá usar-lo novamente em **[ <t:{cooldown}:t> | <t:{cooldown}:R> ]**."
+                ),
+                ephemeral=True
+            )
+
         await interaction.response.defer(
             thinking=True
         )
@@ -32,6 +51,19 @@ class Chat(commands.Cog):
                 return await interaction.followup.send(
                     f"{emoji('error')} Sua mensagem é muito grande."
                 )
+
+            chat_cd = int(
+                (
+                    datetime.now()
+                    + timedelta(seconds=30)
+                ).timestamp()
+            )
+
+            await setV(
+                interaction.user.id,
+                "chat_cd",
+                chat_cd
+            )
 
             resposta = await groq_service(
                 bot=self.bot,
@@ -48,10 +80,9 @@ class Chat(commands.Cog):
 
         except Exception as error:
             print(error)
+
             await interaction.followup.send(
                 f"{emoji('ducos')} Ocorreu um erro ao conversar comigo."
-
-
             )
 
 async def setup(bot):
