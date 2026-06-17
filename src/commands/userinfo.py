@@ -8,6 +8,7 @@ class UserInfoView(discord.ui.LayoutView):
     def __init__(
         self,
         bot: commands.Bot,
+        author: discord.User,
         user: discord.Member,
         nuells: int,
         premium: bool,
@@ -16,6 +17,7 @@ class UserInfoView(discord.ui.LayoutView):
         super().__init__(timeout=timeout)
 
         self.bot = bot
+        self.author = author
         self.user = user
         self.nuells = nuells
         self.premium = premium
@@ -90,7 +92,7 @@ class UserInfoView(discord.ui.LayoutView):
                 label=" ",
                 emoji=emoji("seta_esq"),
                 style=discord.ButtonStyle.secondary,
-                custom_id=f"userinfo_prev_{self.user.id}",
+                custom_id=f"userinfo_prev_{self.user.id}_{self.author.id}",
                 disabled=self.page <= 1
             )
         )
@@ -108,7 +110,7 @@ class UserInfoView(discord.ui.LayoutView):
                 label=" ",
                 emoji=emoji("seta_dir"),
                 style=discord.ButtonStyle.secondary,
-                custom_id=f"userinfo_next_{self.user.id}",
+                custom_id=f"userinfo_next_{self.user.id}_{self.author.id}",
                 disabled=self.page >= self.max_pages
             )
         )
@@ -123,7 +125,7 @@ class UserInfoView(discord.ui.LayoutView):
         custom_id = interaction.data.get("custom_id")
         data = custom_id.split('_')
 
-        user = int(data[2])
+        user = int(data[3])
         action = data[1]
 
         if user == interaction.user.id:
@@ -170,7 +172,7 @@ class UserInfo(commands.GroupCog, name="usuário"):
         premium = await get(user.id, "premium")
 
         await interaction.response.send_message(
-            view=UserInfoView(self.bot, user, nuells, premium)
+            view=UserInfoView(self.bot, interaction.user, user, nuells, premium)
         )
 
 async def setup(bot):
