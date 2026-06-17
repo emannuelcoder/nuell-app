@@ -129,7 +129,7 @@ class PayAcceptInteraction(commands.Cog):
             support = discord.ui.Button(
                 label="Suporte",
                 style=discord.ButtonStyle.link,
-                url="https://discord.gg/support"
+                url="https://discord.gg/CUv9QAxJPa"
             )
 
             view = discord.ui.LayoutView(timeout=None)

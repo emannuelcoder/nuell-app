@@ -44,7 +44,7 @@ class OnMessage(commands.Cog):
         if message.author.bot:
             return
 
-        if message.content.strip() == self.bot.user.mention:
+        if message.content == self.bot.user.mention or message.content == f"<@!{self.bot.user.id}>":
             commands_list = await self.bot.tree.fetch_commands()
 
             help_command = discord.utils.get(

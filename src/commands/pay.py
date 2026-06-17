@@ -27,7 +27,7 @@ class PayMessage(discord.ui.LayoutView):
         supportButton = discord.ui.Button(
             label="Suporte",
             style=discord.ButtonStyle.link,
-            url="https://discord.gg/support"
+            url="https://discord.gg/CUv9QAxJPa"
         )
 
         try:
