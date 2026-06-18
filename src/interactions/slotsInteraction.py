@@ -20,7 +20,7 @@ class InteractionMessage(discord.ui.LayoutView):
             message = (
                 f"## {emoji('slots')} Máquina caça-níqueis\n"
                 f"> {user.mention}, você apostou **{amount} {emoji('ducos')} Ducos** e **ganhou [ {reward} | {abv(reward)} ] Ducos**.\n\n"
-                f"{emoji('confetes')} Parabéns! Você conseguiu vencer na máquina caça-níqueis e ganhou **{amount * 2} Ducos**.\n"
+                f"{emoji('confetes')} Parabéns! Você conseguiu vencer na máquina caça-níqueis e ganhou **{reward} Ducos**.\n"
                 f"-# ⤷ Você pode usar </saldo:1513679777410846854> para consultar seu novo saldo."
             )
         else:
