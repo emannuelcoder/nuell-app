@@ -40,6 +40,8 @@ class Ranking(commands.Cog):
         interaction: discord.Interaction,
         tipo: app_commands.Choice[str]
     ):
+        await interaction.response.defer()
+
         tipo = tipo.value
 
         if tipo == "ducos":
@@ -47,7 +49,7 @@ class Ranking(commands.Cog):
             titulo = "Ranking de Ducos"
             nome_moeda = "Ducos"
 
-        else:
+        elif tipo == "reputacao":
             column = User.reps
             titulo = "Ranking de Reputações"
             nome_moeda = "Reputações"
@@ -68,7 +70,7 @@ class Ranking(commands.Cog):
             rows = result.all()
 
         if not rows:
-            return await interaction.response.send_message(
+            return await interaction.followup.send(
                 f"{emoji('error')} Nenhum usuário encontrado.",
                 ephemeral=True
             )
@@ -122,8 +124,6 @@ class Ranking(commands.Cog):
             "banners": ",".join(banners)
         }
 
-        await interaction.response.defer()
-
         async with aiohttp.ClientSession() as session:
             async with session.get(
                 "https://devas-api.vercel.app/api/v1/discord/canvas/rank",
@@ -134,7 +134,7 @@ class Ranking(commands.Cog):
                     return await interaction.followup.send(
                         f"{emoji('error')} Não foi possível gerar a imagem do ranking."
                     )
-                
+
                 image = io.BytesIO(
                     await response.read()
                 )
