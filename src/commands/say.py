@@ -43,8 +43,7 @@ class Say(commands.Cog):
     )
 
     async def say(self, interaction: discord.Interaction, texto: str):
-        await interaction.response.defer()
-        await interaction.followup.send(
+        await interaction.response.send_message(
             view=SayMessage(self.bot, interaction.user, texto)
         )
 

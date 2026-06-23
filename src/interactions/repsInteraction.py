@@ -29,7 +29,7 @@ class NewMessage(discord.ui.LayoutView):
 
         self.add_item(discord.ui.ActionRow(sendRep))
 
-class OnInteraction(commands.Cog):
+class RepInteraction(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
@@ -129,5 +129,5 @@ class OnInteraction(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(
-        OnInteraction(bot)
+        RepInteraction(bot)
     )
