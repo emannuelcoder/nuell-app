@@ -23,7 +23,7 @@ class Nuell(commands.Bot):
             print(f"❌ Erro ao sincronizar comandos: {e}")
 
 intents = discord.Intents.all()
-bot = Nuell("a.", intents=intents)
+bot = Nuell("n.", intents=intents)
 
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
