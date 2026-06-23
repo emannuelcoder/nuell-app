@@ -58,7 +58,12 @@ class DailyInteraction(commands.Cog):
         await add(interaction.user.id, 'money', amount)
         total = await get(interaction.user.id, 'money')
 
+        cooldown = await get(interaction.user.id, "daily_cd")
         now_dt = datetime.now()
+        now = int(now_dt.timestamp())
+
+        if cooldown > now:
+            await interaction.response.send_message(f"{emoji('error')} Tá tentando burlar meu sistema? Tem que esperar direitinho viu.")
 
         midNight = now_dt.replace(
             hour=0,

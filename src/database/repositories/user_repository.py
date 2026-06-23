@@ -12,6 +12,8 @@ VALID_FIELDS = {
     "premium",
     "in_pay",
     "in_bet",
+    "reps",
+    "reps_cd"
 }
 
 NUMERIC_FIELDS = {

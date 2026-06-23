@@ -51,7 +51,7 @@ class Command8Ball(commands.Cog):
     async def command8ball(self, interaction: discord.Interaction, mensagem: str):
         botMessage = random_message()
 
-        await interaction.response.defer()
+        await interaction.response.defer(thinking=True)
         await interaction.followup.send(
             view=Message8Ball(self.bot, interaction.user, mensagem, botMessage)
         )

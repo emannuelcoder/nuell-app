@@ -33,7 +33,7 @@ class jokeCommand(commands.Cog):
     async def jokecommand(self, interaction: discord.Interaction):
         piada, resposta = random_joke()
 
-        await interaction.response.defer()
+        await interaction.response.defer(thinking=True)
         await interaction.followup.send(
             view=jokeMessage(self.bot, interaction.user, piada, resposta)
         )

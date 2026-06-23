@@ -57,7 +57,7 @@ class Hug(commands.Cog):
             await interaction.response.send_message(f"{emoji('error')} Cara aceita, ninguém te quer, um deles sou eu, não vou te abraçar.")
             return
         
-        await interaction.response.defer()
+        await interaction.response.defer(thinking=True)
 
         async with aiohttp.ClientSession() as session:
             async with session.get(

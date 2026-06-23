@@ -2,8 +2,7 @@ import discord
 import traceback
 import asyncio
 from discord.ext import commands
-from discord import Activity, ActivityType
-
+from discord import ActivityType
 from src.database.configs.setup import create_tables
 
 class OnReady(commands.Cog):

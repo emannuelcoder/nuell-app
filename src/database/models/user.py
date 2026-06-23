@@ -11,10 +11,12 @@ class User(Base):
     premium: Mapped[bool] = mapped_column(default=False)
 
     money: Mapped[int] = mapped_column(default=0)
+    reps: Mapped[int] = mapped_column(default=0)
 
     daily_cd: Mapped[int] = mapped_column(BigInteger, default=0)
     work_cd: Mapped[int] = mapped_column(BigInteger, default=0)
     chat_cd: Mapped[int] = mapped_column(BigInteger, default=0)
+    reps_cd: Mapped[int] = mapped_column(BigInteger, default=0)
 
     in_pay: Mapped[bool] = mapped_column(default=False)
     in_bet: Mapped[bool] = mapped_column(default=False)

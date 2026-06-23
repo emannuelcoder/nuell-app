@@ -60,6 +60,10 @@ class WorkInteraction(commands.Cog):
 
         now_dt = datetime.now()
         now = int(now_dt.timestamp())
+        cooldown = await get(interaction.user.id, 'work_cd')
+
+        if cooldown > now:
+            await interaction.response.send_message(f"{emoji('error')} Tá tentando burlar meu sistema? Tem que esperar direitinho viu.", ephemeral=True)
 
         min30 = now_dt + timedelta(minutes=30)
         min30 = int(min30.timestamp())

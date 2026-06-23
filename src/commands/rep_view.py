@@ -6,42 +6,42 @@ from src.utils.emojis import emoji
 from src.utils.abbreviate import abv
 
 class Message(discord.ui.LayoutView):
-    def __init__(self, interaction: discord.Interaction, user: discord.User, balance: int):
+    def __init__(self, interaction: discord.Interaction, user: discord.User, reps: int):
         super().__init__()
         self.user = user
-        self.balance = balance
+        self.reps = reps
 
         self.add_item(
             discord.ui.TextDisplay(
-                f"## {emoji('sacola')} Saldo de {user.mention}\n"
+                f"## {emoji('like')} Reputações de {user.mention}\n"
             )
         )
 
         if interaction.user.id != user.id:
             self.add_item(
                 discord.ui.TextDisplay(
-                    f"{interaction.user.mention}, o saldo atual de {user.mention} é **[ `{balance}` | `{abv(balance)}` ] {emoji('ducos')} Ducos.**"
+                    f"{interaction.user.mention}, atualmente tem {user.mention} é **[ `{reps}` ] reputações**."
                 )
             )
         else:
             self.add_item(
                 discord.ui.TextDisplay(
-                    f"{interaction.user.mention}, seu saldo atual é **[ `{balance}` | `{abv(balance)}` ] {emoji('ducos')} Ducos.**"
+                    f"{interaction.user.mention}, atualmente você tem **[ `{reps}` ] reputações**."
                 )
             )
 
 
-class Balance(commands.Cog):
+class RepsView(commands.GroupCog, name="reputações"):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
     @app_commands.command(
-        name="saldo",
-        description="Veja o seu saldo de Ducos ou de outro usuário."
+        name="ver",
+        description="Veja suas reputações ou de outro usuário."
     )
 
     @app_commands.describe(
-        usuário="Veja o saldo de outro usuário."
+        usuário="Veja as reputações de outro usuário."
     )
 
     async def saldo(
@@ -57,9 +57,9 @@ class Balance(commands.Cog):
             view=Message(
                 interaction,
                 target_user,
-                db_user.money
+                db_user.reps
             )
         )
 
 async def setup(bot):
-    await bot.add_cog(Balance(bot))
+    await bot.add_cog(RepsView(bot))
