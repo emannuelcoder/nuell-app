@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
-
+from src.utils.cooldown import check
 from src.utils.emojis import emoji
 
 
@@ -220,6 +220,15 @@ class ServerInfo(
         self,
         interaction: discord.Interaction
     ):
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
+        
         await interaction.response.send_message(
             view=ServerInfoView(
                 self.bot,

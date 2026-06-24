@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from src.utils.emojis import emoji
 from src.database.repositories.user_repository import setV, get
+from src.utils.cooldown import check
 
 class NewMessage(discord.ui.LayoutView):
     def __init__(self, bot: commands.Bot, author: discord.User, target: discord.Member, totalReps: int):
@@ -60,6 +61,15 @@ class RepInteraction(commands.Cog):
                 f"{emoji('error')} Apenas quem iniciou o envio pode confirmar a reputação.",
                 ephemeral=True
             )
+        
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
 
         target = interaction.guild.get_member(target_id)
 

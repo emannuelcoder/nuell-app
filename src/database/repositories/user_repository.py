@@ -13,7 +13,8 @@ VALID_FIELDS = {
     "in_pay",
     "in_bet",
     "reps",
-    "reps_cd"
+    "reps_cd",
+    "cooldown",
 }
 
 NUMERIC_FIELDS = {

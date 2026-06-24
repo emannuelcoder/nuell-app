@@ -7,6 +7,7 @@ from sqlalchemy import select, desc
 from src.database.configs.database import SessionLocal
 from src.database.models.user import User
 from src.utils.emojis import emoji
+from src.utils.cooldown import check
 
 class Ranking(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -41,6 +42,15 @@ class Ranking(commands.Cog):
         tipo: app_commands.Choice[str]
     ):
         await interaction.response.defer()
+
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.followup.send(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
 
         tipo = tipo.value
 

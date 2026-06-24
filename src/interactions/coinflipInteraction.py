@@ -5,6 +5,7 @@ from src.utils.emojis import emoji
 from src.utils.parse import parse
 from src.utils.abbreviate import abv
 from src.database.repositories.user_repository import get, setV, add, sub
+from src.utils.cooldown import check
 
 class CoinflipInteraction(commands.Cog):
     def __init__(self, bot: commands.Bot):
@@ -62,6 +63,15 @@ class CoinflipInteraction(commands.Cog):
                     f"{emoji('error')} Ei, {interaction.user.mention}. Este botão não é para você.",
                     ephemeral=True
                 )
+            
+            can_use, remaining = await check(interaction.user.id)
+
+            if not can_use:
+                await interaction.response.send_message(
+                    f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                    ephemeral=True
+                )
+                return
 
             user_money = await get(user_id, "money")
 

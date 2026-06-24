@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord import app_commands
 from src.utils.emojis import emoji
 from src.database.repositories.user_repository import get
+from src.utils.cooldown import check
 
 class DailyMessage(discord.ui.LayoutView):
     def __init__(self, interaction: discord.Interaction, cooldown: int):
@@ -72,6 +73,15 @@ class Daily(commands.Cog):
     )
 
     async def daily(self, interaction: discord.Interaction):
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
+        
         cooldown = await get(interaction.user.id, "daily_cd") or 0
 
         await interaction.response.send_message(

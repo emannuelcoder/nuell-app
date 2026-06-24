@@ -1,10 +1,9 @@
 import discord
 from discord.ext import commands
-
 from src.utils.emojis import emoji
 from src.utils.abbreviate import abv
 from src.database.repositories.user_repository import setV
-
+from src.utils.cooldown import check
 
 class InteractionMessage(discord.ui.LayoutView):
     def __init__(
@@ -67,6 +66,15 @@ class PayCancelInteraction(commands.Cog):
         sender_id = int(data[2])
         target_id = int(data[3])
         amount = int(data[4])
+
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
 
         if interaction.user.id not in (sender_id, target_id):
             return await interaction.response.send_message(

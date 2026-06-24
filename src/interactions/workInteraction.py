@@ -5,6 +5,7 @@ from discord.ext import commands
 from src.utils.emojis import emoji
 from src.database.repositories.user_repository import setV, get, add
 from src.utils.abbreviate import abv
+from src.utils.cooldown import check
 
 class InteractionMessage(discord.ui.LayoutView):
     def __init__(self, interaction: discord.Interaction, amount: int, total: int):
@@ -53,6 +54,15 @@ class WorkInteraction(commands.Cog):
                 f"{emoji('error')} Erro, {interaction.user.mention}. Você não pode apertar este botão, afinal, ele não é seu. Cai fora!",
                 ephemeral=True
             )
+        
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
 
         amount = random.randint(800, 2500)
         await add(interaction.user.id, 'money', amount)

@@ -3,6 +3,7 @@ from discord.ext import commands
 from src.utils.emojis import emoji
 from src.utils.abbreviate import abv
 from src.database.repositories.user_repository import add, sub, setV
+from src.utils.cooldown import check
 
 class InteractionMessage(discord.ui.LayoutView):
     def __init__(
@@ -77,11 +78,21 @@ class PayAcceptInteraction(commands.Cog):
         if target is None:
             target = await self.bot.fetch_user(target_id)
 
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
+        
         if interaction.user.id not in (sender_id, target_id):
             return await interaction.response.send_message(
                 f"{emoji('error')} Ei, {interaction.user.mention}. Esse pagamento não pertence a você. Cai fora!",
                 ephemeral=True
             )
+
 
         if key not in self.accepted:
             self.accepted[key] = {

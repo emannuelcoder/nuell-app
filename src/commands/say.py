@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from discord import app_commands
 from src.utils.emojis import emoji
+from src.utils.cooldown import check
 
 class SayMessage(discord.ui.LayoutView):
     def __init__(self, bot: commands.Bot, user: discord.User, message: str):
@@ -43,6 +44,15 @@ class Say(commands.Cog):
     )
 
     async def say(self, interaction: discord.Interaction, texto: str):
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
+        
         await interaction.response.send_message(
             view=SayMessage(self.bot, interaction.user, texto)
         )

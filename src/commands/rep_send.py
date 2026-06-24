@@ -3,6 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 from src.utils.emojis import emoji
 from src.database.repositories.user_repository import setV, get
+from src.utils.cooldown import check
 
 class Message(discord.ui.LayoutView):
     def __init__(self, bot: commands.Bot, author: discord.User, target: discord.Member):
@@ -45,6 +46,15 @@ class SendRep(commands.GroupCog, name="enviar"):
     )
 
     async def sendrep(self, interaction: discord.Interaction, usuário: discord.Member):
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
+        
         if usuário.id == interaction.user.id:
             await interaction.response.send_message(
                 content=f"{emoji('error')} Você não pode enviar reputações para você mesmo!", ephemeral=True

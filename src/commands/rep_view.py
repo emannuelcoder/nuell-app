@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord import app_commands
 from src.database.repositories.user_repository import get_or_create_user
 from src.utils.emojis import emoji
-from src.utils.abbreviate import abv
+from src.utils.cooldown import check
 
 class Message(discord.ui.LayoutView):
     def __init__(self, interaction: discord.Interaction, user: discord.User, reps: int):
@@ -49,6 +49,15 @@ class RepsView(commands.GroupCog, name="reputações"):
         interaction: discord.Interaction,
         usuário: discord.User | None = None
     ):
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
+        
         target_user = usuário or interaction.user
 
         db_user = await get_or_create_user(target_user.id)

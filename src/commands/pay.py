@@ -5,6 +5,7 @@ from src.utils.emojis import emoji
 from src.database.repositories.user_repository import get, setV
 from src.utils.abbreviate import abv
 from src.utils.parse import parse
+from src.utils.cooldown import check
 
 class PayMessage(discord.ui.LayoutView):
     def __init__(
@@ -197,6 +198,15 @@ class Pay(commands.Cog):
         usuário: discord.User,
         quantia: str
     ):
+        can_use, remaining = await check(interaction.user.id)
+
+        if not can_use:
+            await interaction.response.send_message(
+                f"{emoji('time')} Aguarde **{remaining}s** antes de usar outro comando.",
+                ephemeral=True
+            )
+            return
+        
         user = interaction.user
 
         userMoney = await get(user.id, "money")
